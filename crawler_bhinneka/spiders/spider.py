@@ -33,16 +33,20 @@ def get_base_url(url):
         return ""
 
 
+def encode(str):
+    return str.encode('utf8')
+
+
 def insert_table(datas):
     """
     Just MySQL Insert function
     """
     sql = "INSERT INTO %s (name, link, categories, price) \
 values('%s', '%s', '%s', '%s')" % (SQL_TABLE,
-    escape_string(datas['item_name'][0]),
+    escape_string(datas['item_name']),
     escape_string(datas['item_link']),
-    escape_string(datas['item_category'][0]),
-    escape_string(datas['item_price'][0])
+    escape_string(datas['item_category']),
+    escape_string(datas['item_price'])
     )
     # print sql
     if cursor.execute(sql):
@@ -104,9 +108,9 @@ class BhinnekaSpider(CrawlSpider):
             '''
             bhinneka = CrawlerBhinnekaItem()
             bhinneka['item_link'] = complete_url(item.select('td[1]/a/@href').extract()[0])
-            bhinneka['item_name'] = item.select('td[1]/a/text()').extract()
-            bhinneka['item_category'] = item.select('td[2]/text()').extract()
-            bhinneka['item_price'] = item.select('td[3]/text()').extract()
+            bhinneka['item_name'] = encode(item.select('td[1]/a/text()').extract()[0])
+            bhinneka['item_category'] = item.select('td[2]/text()').extract()[0]
+            bhinneka['item_price'] = item.select('td[3]/text()').extract()[0]
 
             '''
             Save Our Item to MySQL
