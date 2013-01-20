@@ -16,24 +16,27 @@ pp = pprint.PrettyPrinter(indent=4)
 
 
 def complete_url(string):
+    """Return complete url"""
     return "http://www.bhinneka.com" + string
 
 
 def get_base_url(url):
+    """
+    >>> urlparse.urlparse('http://tmcblog.com')
+    >>> ParseResult(scheme='http', netloc='tmcblog.com',
+        path='', params='', query='', fragment='')
+    """
     if url != "":
         u = urlparse.urlparse(url)
-        """
-        >>> urlparse.urlparse('http://tmcblog.com')
-        >>> ParseResult(scheme='http', netloc='tmcblog.com',
-            path='', params='', query='', fragment='')
-        """
         return "%s://%s" % (u.scheme, u.netloc)
     else:
         return ""
 
 
 def insert_table(datas):
-    # print datas
+    """
+    Just MySQL Insert function
+    """
     sql = "INSERT INTO %s (name, link, categories, price) \
 values('%s', '%s', '%s', '%s')" % (SQL_TABLE,
     escape_string(datas['item_name'][0]),
@@ -49,7 +52,9 @@ values('%s', '%s', '%s', '%s')" % (SQL_TABLE,
 
 
 def insert_redis(command, key1, key2):
-    # r.sadd(key1, key2)
+    """
+    Just Redis Insert function
+    """
     if command == 'sadd':
         if r.sadd(key1, key2):
             return True
@@ -59,7 +64,7 @@ def insert_redis(command, key1, key2):
 
 
 class BhinnekaSpider(CrawlSpider):
-    """ 
+    """
     1. Goto http://www.bhinneka.com/categories.aspx
     2. Find some interesting link
     (http://www.bhinneka.com/aspx/products/pro_display_products.aspx?\
@@ -68,13 +73,17 @@ class BhinnekaSpider(CrawlSpider):
     """
 
     name = 'bhinneka_spider'
-
     start_urls = [
         'http://www.bhinneka.com/categories.aspx'
     ]
 
     def parse(self, response):
+        """
+        Parse List Category page, example :
+        http://www.bhinneka.com/categories.aspx
+        """
         hxs = HtmlXPathSelector(response)
+        # HXS to find url that goes to detail page
         items = hxs.select('//div[@id="ctl00_content_divContent"]\
 //li[@class="item"]/a[2]/@href')
         for item in items:
@@ -82,11 +91,12 @@ class BhinnekaSpider(CrawlSpider):
             yield Request(complete_url(link), callback=self.parse_category)
 
     def parse_category(self, response):
-        # VARIABLE
+        """
+        Parse Categories, example :
+        http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=0115
+        """
         hxs = HtmlXPathSelector(response)
-        # datas = []
-        # HXS select URL only
-
+        # HXS to Detail link inside td and a
         items = hxs.select('//div[@class="box"]/table/tr')
         for item in items:
             '''
@@ -97,21 +107,8 @@ class BhinnekaSpider(CrawlSpider):
             bhinneka['item_name'] = item.select('td[1]/a/text()').extract()
             bhinneka['item_category'] = item.select('td[2]/text()').extract()
             bhinneka['item_price'] = item.select('td[3]/text()').extract()
-            # datas.append(bhinneka)
+
             '''
             Save Our Item to MySQL
             '''
             insert_table(bhinneka)
-
-        # return datas
-
-        # print "This is " + response.url
-            # datas['item_link'] = item.select('td[1]/a/@href').extract()
-            # datas['item_name'] = item.select('td[1]/a/text()').extract()
-            # datas['item_category'] = item.select('td[2]/text()').extract()
-            # datas['item_price'] = item.select('td[3]/text()').extract()
-
-        # print datas
-
-
-
