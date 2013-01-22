@@ -34,7 +34,7 @@ def get_base_url(url):
 
 
 def encode(str):
-    return str.encode('utf8')
+    return str.encode('utf8', 'ignore')
 
 
 def insert_table(datas):

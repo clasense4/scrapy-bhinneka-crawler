@@ -47,4 +47,30 @@ http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01HZ
 2013-01-19 23:09:47+0700 [scrapy] INFO: Dumping global stats:
 	{'memusage/max': 42934272, 'memusage/startup': 36118528}
 
-	
+
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01OK
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=00UM
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01AM
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=00XD
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=0161
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01EL
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=009L
+http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=012F
+
+2013-01-21 10:48:40+0700 [bhinneka_spider] INFO: Dumping spider stats:
+	{'downloader/request_bytes': 539670,
+	 'downloader/request_count': 1132,
+	 'downloader/request_method_count/GET': 1132,
+	 'downloader/response_bytes': 95065777,
+	 'downloader/response_count': 1132,
+	 'downloader/response_status_count/200': 888,
+	 'downloader/response_status_count/302': 244,
+	 'finish_reason': 'finished',
+	 'finish_time': datetime.datetime(2013, 1, 21, 3, 48, 40, 357544),
+	 'request_depth_max': 1,
+	 'scheduler/memory_enqueued': 1132,
+	 'spider_exceptions/UnicodeEncodeError': 8,
+	 'start_time': datetime.datetime(2013, 1, 21, 3, 44, 34, 886068)}
+2013-01-21 10:48:40+0700 [bhinneka_spider] INFO: Spider closed (finished)
+2013-01-21 10:48:40+0700 [scrapy] INFO: Dumping global stats:
+	{'memusage/max': 43712512, 'memusage/startup': 35667968}	
