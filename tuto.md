@@ -7,29 +7,30 @@ I want to show you how to scrap one of the biggest online store in indonesia, [B
 1. Make sure you have scrapy installed in your machine (I use ubuntu 10.04). [Installation](http://doc.scrapy.org/en/0.16/intro/install.html)
 2. First, open up [Bhinneka.com](http://www.bhinneka.com) in your browser, (I use google chrome), and find [Shop by Categories](http://www.bhinneka.com/categories.aspx).
 3. Then right click in magnify icon, click "inspect element". And now you know what element in it. It show Us next link that we want to scrap. If we hover to the icon, the link will appear, maybe something like [this](http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01A8).
-4. Then save the link, and try to use scrapy via console with this command to get all the links. `scrapy shell http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01A8`.
+4. Then save the link, and try to use scrapy via console with this command to get all the links. `scrapy shell http://www.bhinneka.com/categories.aspx`.
 
-        fajri@fajri-laptop:~$ scrapy shell http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01A8
-        2013-01-22 12:30:12+0700 [scrapy] INFO: Scrapy 0.14.3 started (bot: scrapybot)
-        2013-01-22 12:30:12+0700 [scrapy] DEBUG: Enabled extensions: TelnetConsole, CloseSpider, WebService, CoreStats, MemoryUsage, SpiderState
-        2013-01-22 12:30:12+0700 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, ChunkedTransferMiddleware, DownloaderStats
-        2013-01-22 12:30:12+0700 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
-        2013-01-22 12:30:12+0700 [scrapy] DEBUG: Enabled item pipelines: 
-        2013-01-22 12:30:12+0700 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6024
-        2013-01-22 12:30:12+0700 [scrapy] DEBUG: Web service listening on 0.0.0.0:6081
-        2013-01-22 12:30:12+0700 [default] INFO: Spider opened
-        2013-01-22 12:30:13+0700 [default] DEBUG: Crawled (200) <GET http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01A7> (referer: None)
+        fajri@fajri-laptop:~$ scrapy shell http://www.bhinneka.com/categories.aspx
+        2013-01-22 12:42:36+0700 [scrapy] INFO: Scrapy 0.14.3 started (bot: scrapybot)
+        2013-01-22 12:42:37+0700 [scrapy] DEBUG: Enabled extensions: TelnetConsole, CloseSpider, WebService, CoreStats, MemoryUsage, SpiderState
+        2013-01-22 12:42:37+0700 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, ChunkedTransferMiddleware, DownloaderStats
+        2013-01-22 12:42:37+0700 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+        2013-01-22 12:42:37+0700 [scrapy] DEBUG: Enabled item pipelines: 
+        2013-01-22 12:42:37+0700 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6025
+        2013-01-22 12:42:37+0700 [scrapy] DEBUG: Web service listening on 0.0.0.0:6082
+        2013-01-22 12:42:37+0700 [default] INFO: Spider opened
+        2013-01-22 12:43:03+0700 [default] DEBUG: Crawled (200) <GET http://www.bhinneka.com/categories.aspx> (referer: None)
         [s] Available Scrapy objects:
-        [s]   hxs                <HtmlXPathSelector xpath=None data=u'<html id="ctl00_html" itemscope="itemsco'>
-        [s]   item           {}
-        [s]   request        <GET http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01A8>
-        [s]   response   <200 http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01A8>
+        [s]   hxs        <HtmlXPathSelector xpath=None data=u'<html id="ctl00_html" itemscope="itemsco'>
+        [s]   item       {}
+        [s]   request    <GET http://www.bhinneka.com/categories.aspx>
+        [s]   response   <200 http://www.bhinneka.com/categories.aspx>
         [s]   settings   <CrawlerSettings module=None>
-        [s]   spider         <BaseSpider 'default' at 0xa7e33ec>
+        [s]   spider     <BaseSpider 'default' at 0x92f002c>
         [s] Useful shortcuts:
-        [s]   shelp()                   Shell help (print this help)
+        [s]   shelp()           Shell help (print this help)
         [s]   fetch(req_or_url) Fetch request (or URL) and update local objects
-        [s]   view(response)        View response in a browser
+        [s]   view(response)    View response in a browser
+
 
 5. Then use this command to get all links inside the page `hxs.select('//div[@id="ctl00_content_divContent"]//li[@class="item"]/a[2]/@href').extract()`. The output is something like this.
 
@@ -56,3 +57,6 @@ I want to show you how to scrap one of the biggest online store in indonesia, [B
          u'http://www.bhinneka.com/aspx/products/pro_display_products.aspx?CategoryID=01VG', 
          ...
 
+##Conclusion
+
+Now, You're know how to use scrapy, this is just a beginning and the other side tutorial from original [scrapy tutorial](https://scrapy.readthedocs.org/en/latest/intro/tutorial.html). 
