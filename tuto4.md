@@ -150,16 +150,16 @@ I know you read my [first post](http://clasense4.wordpress.com/2013/01/22/scrapy
 
 9. Change `parse_category` function with this line :
 
-    def parse_category(self, response):
-        hxs = HtmlXPathSelector(response)
-        items = hxs.select('//div[@class="box"]/table/tr')
-        for item in items:
-            bhinneka = ScrapyBhinnekaCrawlerItem()
-            bhinneka['item_link'] = complete_url(item.select('td[1]/a/@href').extract()[0])
-            bhinneka['item_name'] = encode(item.select('td[1]/a/text()').extract()[0])
-            bhinneka['item_category'] = item.select('td[2]/text()').extract()[0]
-            bhinneka['item_price'] = item.select('td[3]/text()').extract()[0]
-            insert_table(bhinneka)
+        def parse_category(self, response):
+            hxs = HtmlXPathSelector(response)
+            items = hxs.select('//div[@class="box"]/table/tr')
+            for item in items:
+                bhinneka = ScrapyBhinnekaCrawlerItem()
+                bhinneka['item_link'] = complete_url(item.select('td[1]/a/@href').extract()[0])
+                bhinneka['item_name'] = encode(item.select('td[1]/a/text()').extract()[0])
+                bhinneka['item_category'] = item.select('td[2]/text()').extract()[0]
+                bhinneka['item_price'] = item.select('td[3]/text()').extract()[0]
+                insert_table(bhinneka)
 
 10. Test again Our Spider :
 
