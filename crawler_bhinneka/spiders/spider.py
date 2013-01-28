@@ -41,8 +41,8 @@ def insert_table(datas):
     """
     Just MySQL Insert function
     """
-    sql = "INSERT INTO %s (name, link, categories, price) \
-values('%s', '%s', '%s', '%s')" % (SQL_TABLE,
+    sql = "INSERT INTO %s (name, link, categories, price, time_capt) \
+values('%s', '%s', '%s', '%s', NOW())" % (SQL_TABLE,
     escape_string(datas['item_name']),
     escape_string(datas['item_link']),
     escape_string(datas['item_category']),

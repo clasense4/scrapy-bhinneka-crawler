@@ -1,6 +1,6 @@
 #Step by step crawling bhinneka.com - part 3
 
-I know you read my [first post](http://clasense4.wordpress.com/2013/01/22/scrapy-how-to-step-by-step-crawling-bhinneka-com-part-1/) and [second post](http://clasense4.wordpress.com/2013/01/24/scrapy-how-to-step-by-step-crawling-bhinneka-com-part-2/), that's still not complete, and now I will complete this tuts, this is the last post in this session about scrapy. Actually, I really don't know if my method is right or wrong, but it really works, and I got what I need. Do not hesitate to ask me, just goto [about](http://clasense4.wordpress.com/about/) and ask me, if I can help, I will answer your question.
+I know you read my [first post](http://clasense4.wordpress.com/2013/01/22/scrapy-how-to-step-by-step-crawling-bhinneka-com-part-1/) and [second post](http://clasense4.wordpress.com/2013/01/24/scrapy-how-to-step-by-step-crawling-bhinneka-com-part-2/), that's still not complete, and now I will complete this tuts, this is not the last post in this session about scrapy. Actually, I really don't know if my method is right or wrong, but it really works, and I got what I need. Do not hesitate to ask me, just goto [about](http://clasense4.wordpress.com/about/) and ask me, if I can help, I will answer your question.
 
 ##Let's do it
 1. Open your terminal and create new scrapy project (my scrapy version is 0.14.3) :
